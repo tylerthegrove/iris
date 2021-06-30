@@ -7,13 +7,46 @@ import { Pop } from './PopOver.minors';
 
 import { Dock } from '../Dock/Dock';
 import { Button as B, Badge, Input } from '../../components';
-import { Gear } from '../../icons';
+import { Gear, ChevronDown } from '../../icons';
 import { Paragraph } from '../../typography';
 import { blue } from '../../color';
+import { core } from '../../tokens';
 
 export default {
-  title: 'layout/PopOver/Examples',
+  title: 'layout/PopOver/examples',
 };
+
+export function VideoLibrarySearch() {
+  return (
+    <div style={{ padding: '2rem' }}>
+      <PopOver content={<div>All Video Folder</div>}>
+        <B
+          format="secondary"
+          icon={<ChevronDown />}
+          iconPosition="right"
+        >
+          Type
+        </B>
+      </PopOver>
+      <div>
+        <Block style={{ width: '5rem', height: '1rem' }} />
+        <Block />
+        <Block />
+        <Block />
+        <Block />
+      </div>
+    </div>
+  );
+}
+
+const Block = styled.div`
+  display: block;
+  margin: 0.5rem 0;
+  background: ${core.color.background(200)};
+  width: 100%;
+  height: 4rem;
+  border-radius: 0.25rem;
+`;
 
 export function DynamicSize() {
   const [width, widthSet] = useState(240);
