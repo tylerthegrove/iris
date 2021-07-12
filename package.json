@@ -137,7 +137,10 @@
         "singleQuote": true,
         "overrides": [
             {
-                "files": [ "index.ts", "config.ts" ],
+                "files": [
+                    "index.ts",
+                    "config.ts"
+                ],
                 "options": {
                     "printWidth": 200
                 }

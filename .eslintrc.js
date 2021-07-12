@@ -17,7 +17,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.story.tsx'],
+      files: ['*.story.tsx', 'docs/**'],
       rules: {
         'import/no-default-export': 0,
       },
