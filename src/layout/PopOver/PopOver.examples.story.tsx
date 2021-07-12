@@ -6,15 +6,79 @@ import { PopOver } from './PopOver';
 import { Pop } from './PopOver.minors';
 
 import { Dock } from '../Dock/Dock';
-import { Button as B, Badge, Input } from '../../components';
-import { Gear, ChevronDown } from '../../icons';
-import { Paragraph } from '../../typography';
-import { blue } from '../../color';
+import {
+  Button as B,
+  Badge,
+  Input,
+  CopyField,
+} from '../../components';
+import { Gear, ChevronDown, Link as IconLink } from '../../icons';
+import { Header, Paragraph, Link } from '../../typography';
+import { blue, purple } from '../../color';
 import { core } from '../../tokens';
+import { themes } from '../../themes';
 
 export default {
   title: 'layout/PopOver/examples',
 };
+
+export function NestedTourPoint() {
+  return (
+    <>
+      <PopOver
+        content={
+          <div
+            style={{
+              padding: '2rem 1.5rem 1.5rem',
+              textAlign: 'center',
+              width: '22rem',
+            }}
+          >
+            <Header size="5">Anyone on the internet can see.</Header>
+            {TourPoint}
+            <CopyField
+              format="primary"
+              value="https://vimeo.com/ABCXYZ123"
+              messages={{ success: 'Copied!' }}
+              style={{ margin: '1.5rem 0' }}
+            />
+            <Link>Privacy Settings</Link>
+          </div>
+        }
+      >
+        <B
+          format="secondary"
+          icon={<IconLink />}
+          style={{ margin: '0 auto' }}
+        />
+      </PopOver>
+    </>
+  );
+}
+
+const TourPoint = (
+  <div
+    style={{
+      padding: '1rem',
+      background: purple(700),
+      position: 'absolute',
+      top: '50%',
+      right: 'calc(100% - 1rem)',
+      width: '16rem',
+      color: 'white',
+      transform: 'translateY(-50%)',
+      borderRadius: '0.25rem',
+    }}
+  >
+    <Header size="5" theme={themes.dark}>
+      Share a private link, and viewers will see your brand colors and
+      customer player settings.
+    </Header>
+    <B style={{ marginLeft: 'auto' }} color={purple(850)}>
+      Okay
+    </B>
+  </div>
+);
 
 export function VideoLibrarySearch() {
   return (

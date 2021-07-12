@@ -9,7 +9,7 @@ import { DismissX } from '../../icons';
 import { Layout } from '../../storybook';
 import { Paragraph, Header } from '../../typography';
 
-export default { title: 'layout/Modal/Examples' };
+export default { title: 'layout/Modal/examples' };
 
 export function ExternalState() {
   return (
@@ -23,6 +23,48 @@ export function ExternalState() {
     </Layout.StoryVertical>
   );
 }
+
+export function fullBleed() {
+  return (
+    <Layout.StoryVertical>
+      <Modal
+        active={true}
+        content={ContentFullBleed}
+        onOpen={() => console.log('open')}
+        onClose={() => console.log('close')}
+      />
+    </Layout.StoryVertical>
+  );
+}
+
+const ContentFullBleedStyled = styled.div`
+  padding: 0 0 0.5rem;
+  border-radius: 0.5rem;
+  width: 480px;
+  background: ${({ theme }) => theme.content.background};
+  overflow: hidden;
+`;
+
+const ContentFullBleed = (
+  <ContentFullBleedStyled>
+    <img
+      src="http://placekitten.com/480/230"
+      alt=""
+      style={{ width: 480, height: 230 }}
+    />
+    <div style={{ padding: '2rem 1.5rem 1rem' }}>
+      <Header size="2">Welcome to the team space</Header>
+      <Paragraph size="2">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est
+        autem vitae unde nesciunt, deleniti voluptate? Odio animi
+        tempora magnam similique!
+      </Paragraph>
+      <Button size="sm" style={{ margin: '1rem 0 0 auto' }}>
+        Continue
+      </Button>
+    </div>
+  </ContentFullBleedStyled>
+);
 
 export const WithInputContent = () => <WithInputContentStory />;
 function WithInputContentStory() {
