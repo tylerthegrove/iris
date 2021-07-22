@@ -17,6 +17,12 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['./examples/**'],
+      rules: {
+        'import/no-default-export': 0,
+      },
+    },
+    {
       files: ['*.story.tsx'],
       rules: {
         'import/no-default-export': 0,

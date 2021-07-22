@@ -14,7 +14,7 @@ module.exports = {
             'last 2 Safari versions',
           ],
         },
-        useBuiltIns: 'usage',
+        useBuiltIns: false,
         corejs: 3,
       },
     ],

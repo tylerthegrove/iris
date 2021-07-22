@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { themes } from '@vimeo/iris/themes';
-import { GlobalStyles } from '@vimeo/iris/utils';
+// import { themes } from '@vimeo/iris/themes';
+// import { GlobalStyles } from '@vimeo/iris/utils';
+import { themes } from '../../../dist';
+import { GlobalStyles } from '../../../dist';
 
 /* eslint-disable import/no-default-export */
 export default function App({ Component, pageProps }) {

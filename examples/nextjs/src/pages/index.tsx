@@ -1,9 +1,13 @@
 import Head from 'next/head';
 
-import { Button } from '@vimeo/iris/components';
-import { Header, Paragraph } from '@vimeo/iris/typography';
-import { LightDark } from '@vimeo/iris/icons';
-import { themes } from '@vimeo/iris/themes';
+// import { Button } from '@vimeo/iris/components';
+// import { Header, Paragraph } from '@vimeo/iris/typography';
+// import { LightDark } from '@vimeo/iris/icons';
+// import { themes } from '@vimeo/iris/themes';
+import { Button } from '../../../../dist';
+import { Header, Paragraph } from '../../../../dist';
+import { LightDark } from '../../../../dist';
+import { themes } from '../../../../dist';
 
 import {
   Card,

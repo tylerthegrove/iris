@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Button as B } from '../Button';
-import { Pencil, Camera, Gear, UploadCloud } from '../../../../icons';
+import {
+  Pencil,
+  Camera,
+  Gear,
+  UploadCloud,
+  Remove,
+} from '../../../../icons';
 import { red } from '../../../../color';
 
 export default {
@@ -23,7 +29,10 @@ export function GrowthCTA() {
         Download Chrome extension
       </Button>
       <Button size="xl" icon={<Camera />} color={red(600)}>
-        Try the free demo
+        Go Live
+      </Button>
+      <Button size="xl" icon={<Remove />} color={red(600)}>
+        Cancel
       </Button>
     </div>
   );

@@ -2,8 +2,8 @@
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "declaration": true,
-        "declarationDir": "build",
-        "outDir": "build",
+        "declarationDir": "dist",
+        "outDir": "dist",
         "rootDir": "src",
         "downlevelIteration": true,
         "emitDecoratorMetadata": true,
@@ -52,7 +52,6 @@
         "build-styleguide",
         "build",
         "node_modules",
-        "src/**/*.types.ts",
         "src/**/*.story.tsx",
         "src/**/*.x-story.tsx",
         "src/**/*.test.ts",
