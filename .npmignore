@@ -6,6 +6,7 @@
 build
 dist
 dist-*
+examples
 node_modules
 npm-debug.log
 storybook-static
@@ -41,3 +42,6 @@ storybook-static
 storybook.png
 svg_src_files
 vimeo.png
+
+docs
+storybook

@@ -5,12 +5,11 @@ import React, {
   useReducer,
   useState,
 } from 'react';
-import { slate } from '../../../../color';
-import { withIris } from '../../../../utils';
-import { Input } from '../../Input/Input';
+
 import { Calendar } from '../Calendar/Calendar';
 import { init, reducer } from '../Calendar/Calendar.state';
 import { initialState } from '../Calendar/Calendar.types';
+
 import {
   formatDate,
   getDateFormat,
@@ -29,6 +28,10 @@ import {
 } from './DateRange.style';
 import { PresetValue, Props } from './DateRange.types';
 
+import { slate } from '../../../../color';
+import { withIris } from '../../../../utils';
+import { Input } from '../../Input/Input';
+
 export const DateRange = withIris<HTMLInputElement, Props>(
   DateRangeComponent
 );
@@ -37,12 +40,13 @@ const dateFormat = getDateFormat();
 
 function DateRangeComponent({
   className,
-  onChange,
-  minDate,
-  maxDate,
-  startInputLabel = 'Start date',
   endInputLabel = 'End date',
+  forwardRef,
+  maxDate,
+  minDate,
+  onChange,
   presets,
+  startInputLabel = 'Start date',
   onPresetClick,
 }: Props) {
   const [state, dispatch] = useReducer(reducer, initialState, init);
@@ -81,42 +85,22 @@ function DateRangeComponent({
 
   // Derive the value for the input that represents our start date.
   const startDateLabel = useMemo(() => {
-    if (typeof startLabel === 'string') {
-      return startLabel;
-    }
+    if (typeof startLabel === 'string') return startLabel;
 
-    if (hoverStart) {
-      return formatDate(hoverStart);
-    }
-
-    if (draftStart) {
-      return formatDate(draftStart);
-    }
-
-    if (!open && rangeStart) {
-      return formatDate(rangeStart);
-    }
+    if (hoverStart) return formatDate(hoverStart);
+    if (draftStart) return formatDate(draftStart);
+    if (!open && rangeStart) return formatDate(rangeStart);
 
     return '';
   }, [open, draftStart, startLabel, hoverStart, rangeStart]);
 
   // Derive the value for the input that represents our end date.
   const endDateLabel = useMemo(() => {
-    if (typeof endLabel === 'string') {
-      return endLabel;
-    }
+    if (typeof endLabel === 'string') return endLabel;
 
-    if (hoverEnd) {
-      return formatDate(hoverEnd);
-    }
-
-    if (draftEnd) {
-      return formatDate(draftEnd);
-    }
-
-    if (!open && rangeEnd) {
-      return formatDate(rangeEnd);
-    }
+    if (hoverEnd) return formatDate(hoverEnd);
+    if (draftEnd) return formatDate(draftEnd);
+    if (!open && rangeEnd) return formatDate(rangeEnd);
 
     return '';
   }, [open, draftEnd, endLabel, hoverEnd, rangeEnd]);
@@ -269,7 +253,7 @@ function DateRangeComponent({
 
   // Generate the styles to pin the portal to the parent node.
   return (
-    <DateRangeContainer>
+    <DateRangeContainer ref={forwardRef}>
       {presets ? (
         <Menu
           format="basic"

@@ -38,10 +38,12 @@ function OptionFaux({
   href = null,
   ...props
 }) {
-  const styleDisabled = {
-    pointerEvents: 'none',
-    opacity: 0.4,
-  } as const;
+  const styleDisabled = disabled
+    ? ({
+        pointerEvents: 'none',
+        opacity: 0.4,
+      } as const)
+    : {};
 
   if (href) {
     const childString = children.filter(isString);
@@ -50,7 +52,7 @@ function OptionFaux({
     return (
       <a href={href}>
         <Pop.Item {...props}>
-          <span style={disabled && styleDisabled}>{childString}</span>
+          <span style={styleDisabled}>{childString}</span>
           <span style={{ pointerEvents: 'none' }}>{childNodes}</span>
         </Pop.Item>
       </a>
@@ -58,7 +60,7 @@ function OptionFaux({
   }
 
   return (
-    <Pop.Item {...props} style={disabled && styleDisabled}>
+    <Pop.Item {...props} style={styleDisabled}>
       {children}
     </Pop.Item>
   );

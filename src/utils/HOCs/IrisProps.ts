@@ -47,7 +47,6 @@ type IrisElementProps<DOMElement = HTMLDivElement> = {
   tabIndex?: number;
   theme?: IrisTheme;
   title?: string;
-  test?: 'foo';
 };
 
 type IrisEventProps<DOMElement = HTMLDivElement> = {
@@ -224,7 +223,7 @@ export type IrisInputProps<
 > = Override<
   {
     accept?: string;
-    autocomplete?:
+    autoComplete?:
       | boolean
       | 'bday'
       | 'cc-csc'
@@ -267,6 +266,7 @@ export type IrisInputProps<
     onChange?: ChangeEventHandler<DOMElement>;
     onKeyDown?: KeyboardEventHandler<DOMElement>;
     onKeyUp?: KeyboardEventHandler<DOMElement>;
+    onKeyPress?: KeyboardEventHandler<DOMElement>;
     pattern?: string;
     placeholder?: string;
     readOnly?: boolean;

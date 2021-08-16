@@ -10,10 +10,10 @@ import {
   iconPositions,
 } from './Button.config';
 
-import { DownloadArrow, Plus, ChevronDown } from '../../../icons';
+import { DownloadArrow, Plus, UploadCloud } from '../../../icons';
 
 export default {
-  title: 'Components/Buttons/Button/Props',
+  title: 'Components/Buttons/Button/props',
 };
 
 const Button = styled(B)`
@@ -21,17 +21,15 @@ const Button = styled(B)`
   margin: 0 1rem 1rem 0;
 `;
 
-export function Common() {
-  return <Button>Button</Button>;
-}
-
 export function Disabled() {
   return <Button disabled>Button</Button>;
 }
+Disabled.storyName = 'disabled';
 
 export function Pill() {
   return <Button pill>Button</Button>;
 }
+Pill.storyName = 'pill';
 
 export function Element() {
   return (
@@ -46,57 +44,74 @@ export function Element() {
     </Button>
   );
 }
+Element.storyName = 'element';
 
 export function Format() {
   return formats.map((format, i) => (
     <Button key={i} format={format} children={format} />
   ));
 }
+Format.storyName = 'format';
 
 export function Variant() {
   return variants.map((variant, i) => (
     <Button key={i} variant={variant} children={variant} />
   ));
 }
+Variant.storyName = 'variant';
 
 export function Status() {
   return statuses.map((status, i) => (
     <Button key={i} status={status} children={status} />
   ));
 }
+Status.storyName = 'status';
 
 export function Size() {
+  const style = { display: 'inline-flex' };
+
   return sizes.map((size, i) => (
-    <Button size={size} key={i}>
-      Button
-    </Button>
+    <div key={i} style={{ display: 'flex' }}>
+      <Button size={size} style={style}>
+        Button
+      </Button>
+      <Button size={size} icon={<UploadCloud />} style={style}>
+        Button
+      </Button>
+      <Button size={size} icon={<UploadCloud />} style={style} />
+    </div>
   ));
 }
+Size.storyName = 'size';
 
 export function Icon() {
   return <Button icon={<DownloadArrow />} />;
 }
+Icon.storyName = 'icon';
 
 export function IconPill() {
   return <Button icon={<Plus />} pill />;
 }
-IconPill.storyName = 'Icon (Pill)';
+IconPill.storyName = 'icon, pill';
 
 export function IconPosition() {
   return iconPositions.map((position, i) => (
-    <Button icon={<ChevronDown />} iconPosition={position} key={i}>
+    <Button icon={<UploadCloud />} iconPosition={position} key={i}>
       iconPosition {position}
     </Button>
   ));
 }
+IconPosition.storyName = 'iconPosition';
 
 export function Floating() {
   return <Button floating>Floating Button</Button>;
 }
+Floating.storyName = 'floating';
 
 export function Fluid() {
   return <Button fluid>Fluid Button</Button>;
 }
+Fluid.storyName = 'fluid';
 
 export function FluidVaried() {
   return (
@@ -132,7 +147,7 @@ export function FluidVaried() {
     </>
   );
 }
-FluidVaried.storyName = 'Fluid (Queried)';
+FluidVaried.storyName = 'fluid (queried)';
 
 export const Loading = () => <LoadingStory />;
 function LoadingStory() {
@@ -145,7 +160,50 @@ function LoadingStory() {
     </Button>
   );
 }
+Loading.storyName = 'loading';
 
 export const Overflow = () => {
   return <Button overflow>Button</Button>;
 };
+Overflow.storyName = 'overflow';
+
+export const CustomColor = () => {
+  return (
+    <div>
+      <Button color="#07796a">Button</Button>
+      <Button variant="minimal" color="#aa91e5">
+        Button
+      </Button>
+      <Button
+        variant="outline"
+        color={{
+          color: '#ffffff',
+          hover: '#e7c03f',
+          active: '#e7c03f',
+        }}
+      >
+        Button
+      </Button>
+      <Button
+        variant="outline"
+        color={{
+          color: '#000000',
+          hover: '#e7c03f',
+          active: '#e7c03f',
+        }}
+      >
+        Button
+      </Button>
+      <Button
+        color={{
+          color: '#ff00d4',
+          hover: '#e72626',
+          active: '#700d2b',
+        }}
+      >
+        Button
+      </Button>
+    </div>
+  );
+};
+CustomColor.storyName = 'color';

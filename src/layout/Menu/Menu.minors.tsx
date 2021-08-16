@@ -29,13 +29,13 @@ export function Section({ children, title = null, ...props }) {
 export function Item({ children, ...props }) {
   const simple =
     typeof children === 'object' && !children.props
-      ? children.filter((child) => typeof child === 'string')
+      ? children.flat().filter((child) => typeof child === 'string')
       : children;
 
   const complex =
     typeof children === 'object' &&
     !children.props &&
-    children.filter((child) => typeof child !== 'string');
+    children.flat().filter((child) => typeof child !== 'string');
 
   if (complex) {
     const children = { simple, complex };
@@ -114,7 +114,11 @@ function ComplexItem({
         </Toggle>
       )}
 
-      {open && <SubMenu>{children.complex}</SubMenu>}
+      {open && (
+        <SubMenu total={children.complex.length}>
+          {children.complex}
+        </SubMenu>
+      )}
     </Wrapper>
   );
 }

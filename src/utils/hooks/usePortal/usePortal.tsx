@@ -1,9 +1,7 @@
 import React, {
   useRef,
-  useMemo,
   cloneElement,
   ReactElement,
-  useEffect,
   ReactPortal,
 } from 'react';
 import { createPortal } from 'react-dom';
@@ -16,31 +14,25 @@ import { Anchor } from './Anchor';
 
 import { useOutsideClick } from '../useOutsideClick';
 
-import {
-  SSR,
-  createPortalOutlet,
-  removeElementByID,
-} from '../../DOM';
-import { generateUID } from '../../general';
+import { SSR, createPortalOutlet } from '../../DOM';
 
 export function usePortal(
   Component: ReactElement,
   portalConfig: PortalConfig
 ): [false | ReactPortal, AnchorProps] {
-  const UID = useMemo(() => generateUID(), []);
-
   const screenRef = useRef(null);
   const childRef = useRef(null);
   const ref = useRef(null);
 
   const {
+    allowPageInteraction = false,
     anchorToWindow = false,
     attach = null,
     forceActive,
     margin = 8,
+    onClick: onChildClick,
     screen = false,
     trigger = 'click',
-    onClick: onChildClick,
   } = portalConfig;
 
   const {
@@ -59,14 +51,14 @@ export function usePortal(
     toggle(e);
   };
 
-  const onClick = !controlled && trigger === 'click' && close;
-
-  useEffect(() => () => !SSR && removeElementByID(UID), [UID]);
-  useOutsideClick([ref, childRef], onClick);
+  useOutsideClick([ref, childRef], (event) => {
+    if (allowPageInteraction) return;
+    if (!controlled && trigger === 'click') close(event);
+  });
 
   if (SSR) return [null, null];
 
-  const outlet = createPortalOutlet(UID);
+  const outlet = createPortalOutlet('iris-portals');
 
   const clickProps = { onClick: toggleWithChildClick };
   const hoverProps = { onMouseEnter: open, onMouseLeave: close };

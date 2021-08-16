@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { rgba } from 'polished';
 
-import { PopOver, Pop } from './PopOver';
-import { Grid } from '../Grid/Grid';
+import { PopOver } from './PopOver';
+import { Pop } from './PopOver.minors';
+
 import { Dock } from '../Dock/Dock';
 import { Button as B, Badge, Input } from '../../components';
 import { Gear } from '../../icons';
@@ -34,7 +35,10 @@ export function DynamicSize() {
         <TriggerButton>PopOver</TriggerButton>
       </PopOver>
       <Button onClick={() => widthSet((width) => width + 40)}>
-        resize
+        grow
+      </Button>
+      <Button onClick={() => widthSet((width) => width - 40)}>
+        shrink
       </Button>
     </>
   );
@@ -74,11 +78,7 @@ export function PopOverInsideLink() {
   const [active, setActive] = useState(false);
 
   return (
-    <Grid
-      css={`
-        padding: 2rem;
-      `}
-    >
+    <div style={{ display: 'flex' }}>
       <Card
         href="#"
         key="1"
@@ -120,12 +120,13 @@ export function PopOverInsideLink() {
           </B>
         </PopOver>
       </Card>
-    </Grid>
+    </div>
   );
 }
 
 const Card = styled.a`
   width: 20rem;
+  margin: 1rem;
   height: 15rem;
   display: flex;
   flex-direction: column;

@@ -19,14 +19,14 @@ const fadeIn = keyframes`
 `;
 
 interface Props {
-  wrap: boolean;
+  $wrap: boolean;
   pill?: TipProps['pill'];
   variant?: TipProps['variant'];
   attach?: TipProps['attach'];
 }
 
 export const Tip = styled.div<Props>`
-  max-width: ${maxWidth}rem;
+  max-width: ${maxWidth}rem !important;
   animation: ${fadeIn} 120ms ease-in-out;
   will-change: transform;
 
@@ -51,11 +51,11 @@ function pill({ pill = false }) {
   `;
 }
 
-function variants({ theme, wrap, variant = 'simple' }) {
+function variants({ theme, $wrap, variant = 'simple' }) {
   switch (variant) {
     case 'simple':
       return css`
-        min-width: ${wrap ? `${maxWidth / 2}rem` : '0'};
+        min-width: ${$wrap ? `${maxWidth / 2}rem` : '0'};
         background-color: ${black};
         color: ${white};
         text-align: center;
@@ -66,7 +66,7 @@ function variants({ theme, wrap, variant = 'simple' }) {
       `;
     case 'speech-bubble':
       return css`
-        max-width: ${maxWidth * 1.25}rem;
+        max-width: ${maxWidth * 1.25}rem !important;
         padding: 1.5rem;
         background: ${theme.content.background};
         box-shadow: rgba(0, 0, 0, 0.1) 0 0 0.5rem -0.25rem,
@@ -93,7 +93,7 @@ function caret({ theme, attach }) {
     &:after,
     &:before {
       content: '';
-      z-index: 2000;
+      z-index: 5000;
       position: absolute;
       transform: translate3d(0, 0, 0);
       ${edge_1}: calc(50% - 0.75rem);

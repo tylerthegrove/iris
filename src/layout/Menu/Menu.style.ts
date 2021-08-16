@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
+import { lighten, rgba } from 'polished';
 
 import { grayscale, slate } from '../../color';
-import { lighten, rgba } from 'polished';
 
 export const Action = styled.button`
   position: absolute;
@@ -156,23 +156,20 @@ export const MenuStyled = styled.div<{
       : 'none'};
 `;
 
-const animation = css`
-  animation: ${fade} 140ms ease-in-out both;
-
-  ${[...Array(30)].map(
-    (_, i) => css`
-      &:nth-child(${i + 1}) {
-        animation-delay: ${(i + 1) * 40}ms;
-      }
-    `
-  )};
-`;
-
-export const SubMenu = styled.div`
+export const SubMenu = styled.div<{ total: number }>`
   width: 100%;
   padding-left: 0.5rem;
 
   > div {
-    ${animation};
+    animation: ${fade} 140ms ease-in-out both;
+
+    ${(p) =>
+      [...new Array(30)].map(
+        (_, i) => css`
+          &:nth-child(${i + 1}) {
+            animation-delay: ${(i + 1) * (20 + 100 / p.total)}ms;
+          }
+        `
+      )};
   }
 `;
