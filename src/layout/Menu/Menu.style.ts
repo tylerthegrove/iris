@@ -141,7 +141,6 @@ export const SubMenu = styled.div<{ total: number }>`
 `;
 
 export const Wrapper = styled.div<{
-  $height?: number;
   animationDelay: number;
 }>`
   border-radius: 0.2rem;
@@ -154,13 +153,6 @@ export const Wrapper = styled.div<{
 
   animation: ${fade} 140ms ease-in-out both;
   animation-delay: ${({ animationDelay }) => `${animationDelay}ms`};
-
-  ${(p) =>
-    p.$height &&
-    css`
-      transition: 230ms ease-in-out;
-      height: ${(p.$height + 1) * 2.5 + 0.75}rem;
-    `}
 
   > svg {
     width: 1.125rem;
