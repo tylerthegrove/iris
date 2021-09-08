@@ -39,8 +39,7 @@ export const Toggle = styled.button<{
   }
 
   &:hover {
-    background: ${({ theme }) =>
-      theme.name === 'dark' ? grayscale(600) : slate(200)};
+    background: ${toggleHoverColor};
   }
 
   border: 0px;
@@ -95,19 +94,14 @@ export const ItemStyled = styled.button<{
   font-size: 0.875rem;
   width: 100%;
   background: ${({ active, theme }) =>
-    active
-      ? theme.name === 'dark'
-        ? grayscale(700)
-        : slate(100)
-      : 'transparent'};
+    active ? itemHoverColor({ theme }) : 'transparent'};
   color: ${({ theme }) => theme.content.color};
   border: 0;
   cursor: pointer;
   transition: background 120ms ease-in-out;
 
   &:hover {
-    background: ${({ theme }) =>
-      theme.name === 'dark' ? grayscale(700) : slate(100)};
+    background: ${itemHoverColor};
   }
 
   &:focus {
@@ -144,32 +138,22 @@ export const MenuStyled = styled.div<{
 
 export const SubMenu = styled.div<{ total: number }>`
   width: 100%;
-
-  > div {
-    animation: ${fade} 140ms ease-in-out both;
-
-    ${(p) =>
-      [...new Array(30)].map(
-        (_, i) => css`
-          &:nth-child(${i + 1}) {
-            animation-delay: ${(i + 1) * (20 + 100 / p.total)}ms;
-          }
-        `
-      )};
-  }
 `;
 
 export const Wrapper = styled.div<{
   $height?: number;
+  animationDelay: number;
 }>`
   border-radius: 0.2rem;
   position: relative;
   transition: 80ms ease-in-out;
 
   & ${Toggle}:hover + ${ItemStyled} {
-    background: ${({ theme }) =>
-      theme.name === 'dark' ? grayscale(700) : slate(100)};
+    background: ${itemHoverColor};
   }
+
+  animation: ${fade} 140ms ease-in-out both;
+  animation-delay: ${({ animationDelay }) => `${animationDelay}ms`};
 
   ${(p) =>
     p.$height &&
@@ -195,3 +179,11 @@ export const TextContainer = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
 `;
+
+function itemHoverColor({ theme }) {
+  return theme.name === 'dark' ? grayscale(700) : slate(100);
+}
+
+function toggleHoverColor({ theme }) {
+  return theme.name === 'dark' ? grayscale(600) : slate(200);
+}
