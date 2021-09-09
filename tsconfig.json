@@ -1,23 +1,19 @@
 {
     "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
         "declaration": true,
+        "importHelpers": false,
         "declarationDir": "build",
+        "noEmit": true,
         "outDir": "build",
         "rootDir": "src",
         "downlevelIteration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "jsx": "react",
-        "esModuleInterop": true,
+        "isolatedModules": true,
         "lib": [
-            "es2015",
-            "es2016",
-            "es2017",
-            "es2018",
-            "es2019",
-            "es2020",
-            "esnext",
+            "ESNext",
             "dom"
         ],
         "forceConsistentCasingInFileNames": true,
@@ -29,16 +25,12 @@
         "strict": false,
         "suppressImplicitAnyIndexErrors": true,
         "target": "es5",
-        "importHelpers": true,
         "types": [
             "node",
             "react-dom",
             "react",
             "styled-components"
-        ],
-        "paths": {
-            "@emotion/core": ["./emotion-core-stub.ts"]
-        }
+        ]
     },
     "plugins": [
         {
@@ -56,9 +48,13 @@
         "build",
         "node_modules",
         "src/**/*.types.ts",
+        "src/**/*.story.tsx",
+        "src/**/*.x-story.tsx",
         "src/**/*.test.ts",
         "src/_docs",
         "src/_labs",
+        "src/_tests",
+        "src/_process",
         "src/storybook"
     ]
 }

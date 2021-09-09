@@ -17,14 +17,12 @@ export default (args) => {
   process.env.NODE_ENV = 'production';
 
   return {
-    input: [
-      './src/!(_|storybook)*/**/!(*.story.tsx|*.test.ts|*.types.ts)',
-    ],
+    input: ['./src/!(_|storybook)*/**/!(*.story.tsx|*.test.ts|*.types.ts)'],
     output: {
       dir: './build',
       format: 'cjs',
     },
-    external: [...dependencies, ...peerDependencies, babelRuntime],
+    external: [...dependencies, ...peerDependencies, babelRuntime, 'styled-components/cssprop'],
     plugins: [
       resolve(),
       commonjs(),
