@@ -45,6 +45,7 @@ function ButtonComponent({
   pill = false,
   size = 'md',
   status,
+  textShift = false,
   theme,
   variant = 'solid',
   ...props
@@ -60,12 +61,15 @@ function ButtonComponent({
 
   const radius = pill ? 50 : borderRadiusSizes[size] + 2;
 
+  let formatInstrinsic: Props['format'] | Props['status'] = format;
+  if (status && status !== 'neutral') formatInstrinsic = status;
+
   return (
     <ButtonStyled
       as={element}
       color={color}
       fluid={fluid}
-      format={status ? status : format}
+      format={formatInstrinsic}
       icon={!!icon}
       iconOnly={iconOnly}
       iconPosition={iconPosition}
@@ -73,6 +77,7 @@ function ButtonComponent({
       pill={pill}
       ref={forwardRef}
       size={size}
+      textShift={textShift}
       theme={theme}
       variant={variant}
       {...props}

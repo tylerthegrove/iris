@@ -14,6 +14,7 @@ function makePortal(id: string) {
 
   // create new Portal element with specified id
   const portal = createElement('div', { id });
+
   document.body.appendChild(portal);
   return portal;
 }
