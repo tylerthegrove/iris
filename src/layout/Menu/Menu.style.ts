@@ -141,9 +141,7 @@ export const SubMenu = styled.div<{ total: number }>`
   width: 100%;
 `;
 
-export const Wrapper = styled.div<{
-  animationDelay: number;
-}>`
+export const Wrapper = styled.div`
   border-radius: 0.2rem;
   position: relative;
   transition: 80ms ease-in-out;
@@ -152,11 +150,10 @@ export const Wrapper = styled.div<{
     background: ${itemHoverColor};
   }
 
-  ${({ animationDelay }) =>
-    animationDelay &&
+  ${(p) =>
+    p.style.animationDelay &&
     css`
       animation: ${fade} 140ms ease-in-out both;
-      animation-delay: ${animationDelay}ms;
     `}
 
   > svg {
