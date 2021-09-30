@@ -126,16 +126,26 @@ function PanelComponent({
   });
 
   const childrenPortal = usePortal(
-    <PanelStyled
-      attach={attach}
-      className={className}
-      ref={ref}
-      style={{ [attach]: 0, ...style, ...styleVars }}
-      {...props}
+    <div
+      style={{
+        [attach]: 0,
+        width: 0,
+        top: 0,
+        height: '100%',
+        position: 'absolute',
+      }}
     >
-      {content}
-      {handle}
-    </PanelStyled>
+      <PanelStyled
+        attach={attach}
+        className={className}
+        ref={ref}
+        style={{ [attach]: 0, ...style, ...styleVars }}
+        {...props}
+      >
+        {content}
+        {handle}
+      </PanelStyled>
+    </div>
   );
 
   return childrenPortal as ReactPortal;
